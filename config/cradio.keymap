@@ -11,9 +11,9 @@
 #include <dt-bindings/zmk/mouse.h>
 
 #define MAC 0
-#define WIN 1
-#define RIG 2
-#define LEF 3
+#define NUM 1
+#define SYM 2
+#define NAV 3
 #define TRI 4
 #define MOUSE 5
 
@@ -48,7 +48,7 @@
         compatible = "zmk,conditional-layers";
 
         tri_layer {
-            if-layers = <RIG LEF>;
+            if-layers = <NUM SYM>;
             then-layer = <TRI>;
         };
     };
@@ -58,48 +58,49 @@
 
         default_layer {
             bindings = <
-&kp Q  &kp W       &kp E        &kp R        &kp T         &kp Y      &kp U        &kp I        &kp O       &kp P
-&kp A  &ht LALT S  &ht LCTRL D  &ht LGUI F   &kp G         &kp H      &ht RGUI J   &ht RCTRL K  &ht RALT L  &kp BSPC
-&kp Z  &kp X       &kp C        &kp V        &kp B         &kp N      &kp M        &kp COMMA    &kp DOT     &kp ENTER
-                                &lt LEF TAB  &kp LSHIFT     &kp SPACE &lt RIG TAB
+&kp Q  &kp W       &kp E        &kp R        &kp T              &kp Y      &kp U        &kp I        &kp O       &kp P
+&lt SYM A  &ht LALT S  &ht LCTRL D  &ht LSHIFT F   &ht LGUI G       &ht RGUI H      &ht RSHIFT J   &ht RCTRL K  &ht RALT L  &kp BSPC
+&kp Z  &kp X       &kp C        &kp V        &kp B              &kp N      &kp M        &kp COMMA    &kp DOT     &kp ENTER
+                                &lt NAV TAB  &lt NUM SPACE         &kp SPACE &kp TAB
             >;
         };
 
-        windows_layer {
+        number_layer {
             bindings = <
-&kp Q  &kp W       &kp E       &kp R        &kp T         &kp Y      &kp U        &kp I       &kp O       &kp P
-&kp A  &ht LALT S  &ht LGUI D  &ht LCTRL F  &kp G         &kp H      &ht RCTRL J  &ht RGUI K  &ht RALT L  &kp BSPC
-&kp Z  &kp X       &kp C       &kp V        &kp B         &kp N      &kp M        &kp COMMA   &kp DOT     &kp ENTER
-                               &lt LEF TAB  &kp LSHIFT     &kp SPACE &lt RIG TAB
+&none   &none    &none     &none   &none                &kp EQUAL  &kp N7    &kp N8     &kp N9     &none
+&trans  &kp LALT  &kp LCTRL  &kp LSHIFT  &kp LGUI        &kp MINUS  &kp N4   &kp N5  &kp N6 &none
+&none   &none    &none     &none   &none                &kp FSLH  &kp N1  &kp N2  &kp N3 &kp ENTER 
+                              &none   &none             &kp N0  &kp DOT
             >;
         };
 
-        right_layer {
+        symbol_layer {
             bindings = <
-&kp N1   &kp N2    &kp N3     &kp N4   &kp N5     &kp N6  &kp N7    &kp N8     &kp N9     &kp N0
-&kp DEL  &kp CAPS  &kp PSCRN  &kp INS  &trans     &kp LEFT  &kp DOWN   &kp UP  &kp RIGHT &trans
-&trans   &trans    &trans     &trans   &trans     &kp HOME  &kp PG_DN  &kp PG_UP  &kp END &bootloader 
-                              &trans   &kp ESC    &trans  &trans
+&none   &none    &none     &none   &none                &kp EQUAL  &kp LPAR    &kp RPAR     &kp BACKSLASH     &kp PIPE
+&trans  &kp LALT  &kp LCTRL  &kp LSHIFT  &kp LGUI      &kp MINUS  &kp LBRC   &kp RBRC  &kp SQT &kp SEMICOLON
+&none   &none    &none     &none   &none                &kp FSLH  &kp LBKT  &kp RBKT  &kp N3 &bootloader 
+                              &none   &none             &kp LT  &kp GT
             >;
         };
 
-        left_layer {
+        navigation_layer {
             bindings = <
-&kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE  &kp TILDE
-&kp DQT   &kp LBKT  &kp LBRC  &kp LPAR  &default_report       &kp FSLH   &kp MINUS  &kp EQUAL  &kp COLON  &kp SEMI
-&kp SQT   &kp RBKT  &kp RBRC  &kp RPAR  &bootloader       &kp BSLH   &kp UNDER  &kp PLUS   &kp PIPE   &kp QMARK
-                              &trans    &trans       &tog MOUSE     &trans
+&none   &none    &none     &none   &none                   &kp ESC  &kp HOME    &kp UP     &kp END     &kp DEL
+&trans  &kp LALT  &kp LCTRL  &kp LSHIFT  &kp LGUI         &none  &kp LEFT   &kp DOWN  &kp RIGHT &none
+&none   &none    &none     &none   &none                   &none  &none  &none  &none &none 
+                              &none   &none                &kp PG_DN  &kp PG_UP
             >;
         };
 
         tri_layer {
             bindings = <
-&kp F1  &kp F2   &kp F3   &kp F4   &bt BT_SEL 0    &bt BT_SEL 2  &out OUT_TOG   &tog WIN  &kp C_MUTE    &kp C_PREV
+&kp F1  &kp F2   &kp F3   &kp F4   &bt BT_SEL 0    &bt BT_SEL 2  &out OUT_TOG   &none  &kp C_MUTE    &kp C_PREV
 &kp F5  &kp F6   &kp F7   &kp F8   &bt BT_SEL 1    &bt BT_SEL 3  &kp C_BRI_UP   &studio_unlock    &kp C_VOL_UP  &kp C_PP
 &kp F9  &kp F10  &kp F11  &kp F12  &bt BT_CLR      &bt BT_SEL 4  &kp C_BRI_DEC  &trans    &kp C_VOL_DN  &kp C_NEXT
                           &trans   &trans          &trans        &trans
             >;
         };
+
         mouse {
             bindings = <
 &tog MOUSE  &mkp MB4  &mkp MCLK  &mkp MB5   &trans      &msc SCRL_LEFT     &msc SCRL_DOWN    &msc SCRL_UP     &msc SCRL_RIGHT    &tog MOUSE
