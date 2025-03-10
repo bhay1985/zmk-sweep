@@ -51,7 +51,7 @@
             if-layers = <NUM SYM>;
             then-layer = <TRI>;
         };
-    };fd
+    };
 
     keymap {
         compatible = "zmk,keymap";
